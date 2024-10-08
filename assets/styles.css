@@ -23,7 +23,7 @@ body {
 }
 
 .wrapper {
-    margin: 100px auto;
+    margin: 50px auto;
     max-width: 1100px;
 }
 
@@ -57,30 +57,27 @@ body {
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    margin: 1.5rem 0;
 }
 
 .gallery .image {
-    width: calc(100% / 4);
-    padding: 7px;
-}
-
-.gallery .image span {
-    display: flex;
-    width: 100%;
+    position: relative;
     overflow: hidden;
 }
 
 .gallery .image img {
     width: 100%;
-    vertical-align: middle;
-    transition: all 0.3s ease;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
 }
 
 .gallery .image:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .gallery .image.hide {
@@ -101,7 +98,7 @@ body {
     }
 }
 
-.preview-box {
+/* .preview-box {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -109,12 +106,44 @@ body {
     background: #fff;
     max-width: 700px;
     width: 100%;
+    height: 100%;
     z-index: 5;
     opacity: 0;
     pointer-events: none;
     border-radius: 3px;
     padding: 0 5px 5px 5px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+} */
+
+.preview-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #fff;
+    max-width: 700px;
+    width: 90%;
+    height: auto;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.preview-box.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.preview-box .details {
+    padding: 13px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .preview-box.show {
@@ -138,12 +167,13 @@ body {
 }
 
 .details .title p {
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 5px;
+    color: #588157;
 }
 
 .details .icon {
-    color: #007bff;
+    color: #588157;
     font-style: 22px;
     cursor: pointer;
 }
@@ -155,6 +185,7 @@ body {
 
 .image-box img {
     width: 100%;
+    height: auto;
     border-radius: 0 0 3px 3px;
 }
 
@@ -211,5 +242,17 @@ body {
 
     .gallery .image {
         width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 }

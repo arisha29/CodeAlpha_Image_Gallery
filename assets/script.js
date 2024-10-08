@@ -2,7 +2,7 @@
 const filterItem = document.querySelector(".items");
 const filterImg = document.querySelectorAll(".gallery .image");
 
-window.onload = () => { //after window loaded
+window.onload = () => { 
     filterItem.onclick = (selectedItem) => { //if user click on filterItem div
         if (selectedItem.target.classList.contains("item")) { //if user selected item has .item class
             filterItem.querySelector(".active").classList.remove("active"); //remove the active class which is in first item
